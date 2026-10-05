@@ -1,0 +1,22 @@
+{
+  "global_step": 3673270,
+  "worker": 5,
+  "session": 30,
+  "session_steps": 6348,
+  "rewards": 32,
+  "fell": false,
+  "prox_choices": 16,
+  "prox_correct": 16,
+  "dist_choices": 16,
+  "dist_correct": 16,
+  "criterion_met": true,
+  "first_reward": {
+    "global_step": 831693,
+    "worker": 12,
+    "session": 7,
+    "session_step": 5389
+  },
+  "steps_since_first_reward": 2841577,
+  "checkpoint": "20261001T174107F107183",
+  "checkpoint_verified": true
+}

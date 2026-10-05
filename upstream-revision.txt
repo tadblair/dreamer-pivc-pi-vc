@@ -1,0 +1,2 @@
+https://github.com/danijar/dreamerv3.git
+e3f02248693a79dc8b0ebd62c93683888ddaccfe

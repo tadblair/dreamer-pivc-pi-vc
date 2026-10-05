@@ -1,0 +1,10 @@
+{
+  "step": 8192,
+  "checkpoint": "/home/dreamer/Dreamer/runs/elevated-track-vc256-seed0/ckpt/20261001T185153F380553",
+  "fresh_initialization": true,
+  "parameter_arrays_finite": true,
+  "updates": 97,
+  "criterion_state_saved": true,
+  "first_reward": null,
+  "all_prior_models_preserved": true
+}

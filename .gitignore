@@ -1,0 +1,11 @@
+.venv/
+.cache/
+__pycache__/
+*.pyc
+runs/
+checkpoints/
+*.log
+artifacts/validation/
+artifacts/elevated-task/
+artifacts/vc256-validation/
+variants/*/dreamerv3/scores/

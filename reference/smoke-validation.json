@@ -1,0 +1,42 @@
+{
+  "models": {
+    "pivc256": {
+      "steps": 2048,
+      "updates": 5,
+      "finite_parameters_and_optimizer": true,
+      "posterior_input_shape": [
+        6145,
+        512
+      ],
+      "checkpoint_complete": true,
+      "criterion_state_saved": true,
+      "checkpoint": "20261005T102326F312507"
+    },
+    "pi256": {
+      "steps": 2048,
+      "updates": 5,
+      "finite_parameters_and_optimizer": true,
+      "posterior_input_shape": [
+        6145,
+        512
+      ],
+      "checkpoint_complete": true,
+      "criterion_state_saved": true,
+      "checkpoint": "20261005T102603F756526"
+    },
+    "vc256": {
+      "steps": 2048,
+      "updates": 5,
+      "finite_parameters_and_optimizer": true,
+      "posterior_input_shape": [
+        6145,
+        512
+      ],
+      "checkpoint_complete": true,
+      "criterion_state_saved": true,
+      "checkpoint": "20261005T102849F260297"
+    }
+  },
+  "original_checkpoints_unchanged": true,
+  "environment": "Existing pinned runtime via isolated validation venv; fresh Shapely 2.1.2 install; full clean dependency installation not repeated."
+}
