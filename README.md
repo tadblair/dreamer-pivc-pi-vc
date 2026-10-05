@@ -4,6 +4,11 @@ Training source and simulation resources for the original **PIVC256, PI256, and 
 
 The repository contains the complete modified Dreamer source, the MuJoCo scene, task and sensory code, portable launchers, locked dependencies, and reference configurations and criterion records. No separate Memory Maze checkout, MATLAB file, texture download, or local Shapely folder is needed for this task.
 
+## Project links and accompanying paper
+
+- [Official DreamerV3 website](https://danijar.com/project/dreamerv3/): the original Dreamer project, paper, and implementation.
+- [Grgurich et al. — accompanying paper (PDF)](docs/papers/Grgurich_et_al_final.pdf).
+
 ## Models and stored endpoints
 
 | Model | Training condition | Recorded criterion step | First reward step | Steps since first reward |
@@ -81,6 +86,12 @@ The launchers derive paths from their location. Extra Dreamer flags can be appen
 
 ## How Dreamer was modified
 
+![FiLM-augmented Dreamer architecture](docs/Dreamer_2S2C.png)
+
+FiLM-augmented Dreamer schematic. [View full-resolution PNG](docs/Dreamer_2S2C.png) or [download the original TIFF](docs/Dreamer_2S2C.tif).
+
+Implementation details for interpreting the schematic: the critic evaluates the value of its supplied state (v_t for [z_t, h_t]); the implemented continuation prediction includes the discount factor, so gamma is not multiplied in again. The GRU's previous deterministic state and the prior/posterior KL losses are implicit in the drawing.
+
 Each `variants/elevated-<model>-film/dreamerv3/` is a complete source tree derived from Danijar Hafner's DreamerV3 revision `e3f02248693a79dc8b0ebd62c93683888ddaccfe`. Keeping the three trees separate preserves their original environment wiring and settings. These models use a CNN encoder/decoder, **not the later U-Net**.
 
 At a transition from t to t+1, the encoder receives the previous stereo image I_t and previous proximity readings, the executed action a_t, and the measured motion over that transition. The current stereo image I_(t+1) is the reconstruction target. This turns the image objective into sensory-conditioned next-frame prediction. Reset-frame image losses are masked out.
@@ -143,7 +154,8 @@ reference/
   manifest.json                                 Original checkpoint hashes/locations
   pivc256/ pi256/ vc256/                         Historical configs and evidence
 tests/fixtures/vc256_routes.json                 Approved VC route test geometry
-docs/                                           MuJoCo illustrations for this README
+docs/                                           Architecture diagram and MuJoCo illustrations
+  papers/Grgurich_et_al_final.pdf                Accompanying paper
 runs/                                           Generated; ignored by Git
 ```
 
