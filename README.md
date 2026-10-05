@@ -9,6 +9,16 @@ The repository contains the complete modified Dreamer source, the MuJoCo scene, 
 - [Official DreamerV3 website](https://danijar.com/project/dreamerv3/): the original Dreamer project, paper, and implementation.
 - [Grgurich et al. — accompanying paper (PDF)](docs/papers/Grgurich_et_al_final.pdf).
 
+## Demo inference movie
+
+[![PIVC256 inference: stereo eye views, overhead trajectory, and sensors](docs/videos/pivc256-inference-preview.png)](docs/videos/pivc256-inference-demo.mp4)
+
+**[Watch or download the demo movie (MP4, 6.3 MB)](docs/videos/pivc256-inference-demo.mp4)**
+
+This frozen-policy rollout uses the stored **PIVC256 criterion checkpoint at 978,599 training steps**, with sensory FiLM, delayed reward input to the posterior, and no option vector. It shows 1,000 control transitions (250 seconds of simulation) in 62.5 seconds at **4× speed**. This example collects four rewards with no falls; it is a short demonstration, not a complete criterion session or an evaluation of all three task conditions. No learning occurs during the movie.
+
+The top panels show the current left-eye and right-eye images. The lower panels show an overhead trajectory and sensor/task diagnostics; the overhead view and task labels are not agent inputs. The encoder uses the preceding image and proximity readings as described below. [Movie provenance](docs/videos/pivc256-inference-demo.json) records the checkpoint hash, rollout seed, and playback details. The movie is included; checkpoint weights remain excluded.
+
 ## Models and stored endpoints
 
 | Model | Training condition | Recorded criterion step | First reward step | Steps since first reward |
@@ -112,9 +122,9 @@ The training loop adds graceful stopping, an available-RAM guard, exact transiti
 
 Overhead diagnostic view of the actual PIVC environment at reset (configuration 0). The agent never receives this overhead view.
 
-![Left and right grayscale eye images](docs/stereo-observation.png)
+![Left and right grayscale eye images](docs/stereo-observation-labeled.png)
 
-Left/right observations at the same reset, enlarged with nearest-neighbor scaling for readability.
+Separate left-eye and right-eye observations at the same reset, labeled and separated by a gap. Each 64×64 image is enlarged fourfold with nearest-neighbor scaling; the original observation pixels are unchanged.
 
 `artifacts/elevated-track/scene.xml` contains the complete static track, rim, enclosure, and camera-rig geometry. Mesh vertices are embedded in the XML, so it has no external mesh or texture dependencies. `geometry.json` records geometry checks. `scripts/build_elevated_track.py` can regenerate the static scene from the coded outline using Shapely triangulation; the committed scene is the reference training asset.
 
@@ -156,6 +166,7 @@ reference/
 tests/fixtures/vc256_routes.json                 Approved VC route test geometry
 docs/                                           Architecture diagram and MuJoCo illustrations
   papers/Grgurich_et_al_final.pdf                Accompanying paper
+  videos/                                       PIVC256 demo MP4, preview, and provenance
 runs/                                           Generated; ignored by Git
 ```
 
@@ -168,6 +179,5 @@ Each full run writes to `runs/elevated-track-<model>-seed0/`: `config.yaml`, `me
 See [reference/VALIDATION.md](reference/VALIDATION.md) for checks actually run for this release and their limits. Full acquisition was not repeated when packaging this repository.
 
 The upstream MIT license is preserved in [LICENSE](LICENSE) and in each vendored tree. See [upstream-revision.txt](upstream-revision.txt) for the original project and pinned revision. Simulation/task modifications and packaging are identified above; historical upstream READMEs inside the vendored directories describe upstream Dreamer rather than this elevated-track release.
-
 
 
